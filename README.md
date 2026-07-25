@@ -1,4 +1,10 @@
-# Employee Attrition Prediction
+# 👨‍💼 Employee Attrition Prediction
+
+## 📌 Project Overview
+
+Employee attrition is a major challenge for organizations as it impacts productivity, increases recruitment costs, and affects overall business performance.
+
+This project uses Machine Learning to predict whether an employee is likely to leave the company based on various demographic, job-related, and performance factors. The goal is to help HR teams identify employees at risk of attrition and take proactive retention measures.
 
 An end-to-end machine learning project that predicts employee attrition using the
 [IBM HR Analytics Employee Attrition](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)
@@ -44,60 +50,37 @@ attrition_project/
   `src/feature_engineering.py` for details and rationale.
 - Full details, EDA charts, and business insights are in the notebook.
 
-## Running the notebook
+Live Link : https://employeeattrition-4wsk64zztrrrxexvkc3fb2.streamlit.app/
 
-```bash
-cd attrition_project
-python -m venv .venv && source .venv/bin/activate   # optional but recommended
-pip install -r requirements.txt
-pip install jupyter nbformat ipykernel
-jupyter notebook notebooks/01_employee_attrition_pipeline.ipynb
-```
+## 🚀 Features
 
-Running the notebook end-to-end regenerates `models/attrition_pipeline.pkl` and
-`models/model_metadata.json`.
+- Predict employee attrition using Machine Learning
+- Data preprocessing and feature engineering
+- Exploratory Data Analysis (EDA)
+- Model training and evaluation
+- Random Forest Classifier for prediction
+- Model serialization using Pickle
+- Interactive prediction interface (Streamlit)
 
-## Running the Streamlit app locally
+- ## 📊 Dataset
 
-```bash
-cd attrition_project
-pip install -r requirements.txt
-streamlit run app/streamlit_app.py
-```
+The dataset contains employee-related information such as:
 
-Fill in the employee-details form and click **Predict Attrition Risk** to get a live
-prediction and probability score.
+- Age
+- Gender
+- Department
+- Job Role
+- Education
+- Monthly Income
+- Business Travel
+- Job Satisfaction
+- Environment Satisfaction
+- Work-Life Balance
+- Years at Company
+- Years Since Last Promotion
+- Overtime
+- Performance Rating
+- Attrition (Target Variable)
 
-## Deploying to Streamlit Community Cloud
 
-1. Push this folder to a GitHub repository (see below).
-2. Go to [share.streamlit.io](https://share.streamlit.io), sign in, and click **New app**.
-3. Select your repository/branch, and set:
-   - **Main file path:** `app/streamlit_app.py`
-4. Streamlit Cloud will install `requirements.txt` automatically and deploy the app.
 
-No secrets or API keys are required — the app only depends on the checked-in
-`models/attrition_pipeline.pkl` artifact.
-
-## Pushing to GitHub
-
-```bash
-cd attrition_project
-git init
-git add .
-git commit -m "Employee attrition prediction: EDA, pipeline, and Streamlit app"
-git branch -M main
-git remote add origin <your-repo-url>
-git push -u origin main
-```
-
-`models/attrition_pipeline.pkl` is small (~10 KB) and is safe to commit directly, so the
-Streamlit app works out of the box without a retraining step in CI.
-
-## Retraining
-
-If the underlying HR data changes, re-run the notebook top-to-bottom — it will
-recompute EDA, retrain and re-tune the model, re-evaluate it, and overwrite
-`models/attrition_pipeline.pkl` / `models/model_metadata.json` with the refreshed
-artifacts. No changes to `app/streamlit_app.py` are needed as long as the raw input
-schema (`src/feature_engineering.RAW_FEATURE_COLUMNS`) stays the same.
